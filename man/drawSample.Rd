@@ -1,7 +1,6 @@
 \name{drawSample}
 \alias{drawSample}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{ ~~function to do ... ~~ }
+\title{Draw a sample from the posterior distribution}
 \description{
   ~~ A concise (1-5 lines) description of what the function does. ~~
 }
@@ -27,30 +26,11 @@ drawSample(tlnise.out, n = 1000, Y, V, W = NULL)
   ...
 }
 \references{ ~put references to the literature/web site here ~ }
-\author{ ~~who you are~~ }
+\author{Roger D. Peng}
 \note{ ~~further notes~~ }
-
- ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{ ~~objects to See Also as \code{\link{~~fun~~}}, ~~~ }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function(tlnise.out, n = 1000, Y, V, W = NULL) {
-    sg.out <- sampleGamma(tlnise.out, V, Y, W)
-    gammastar <- sg.out$gammastar
-    Dstar <- sg.out$Dstar
-    N <- NROW(gammastar)
-    w <- sg.out$wt
-    draw <- lapply(seq(n), function(i) {
-        use <- sample(1:N, 1, prob = w)
-        mvrnorm(1, gammastar[use, ], Dstar[[use]])
-    })
-    do.call("rbind", draw)
-  }
+## None
 }
-\keyword{ ~kwd1 }% at least one, from doc/KEYWORDS
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{models}% at least one, from doc/KEYWORDS
