@@ -35,11 +35,29 @@ tlnise(Y, V, w = NA, V0 = NA, prior = NA, N = 1000, seed = 10,
   prior =  (p+1): uniform on shrinkage matrix B0  
 }
 \value{
-  ~Describe the value returned
-  If it is a LIST, use
-  \item{comp1 }{Description of 'comp1'}
-  \item{comp2 }{Description of 'comp2'}
-  ...
+  If \code{brief = 0}, the a list with the following components is returned:
+  \item{gamma}{matrix of posterior mean and SD estimates of Gamma, and
+    thei ratios}
+  \item{theta}{pxJ matrix of posterior mean estimates for thetaj's}
+  \item{SDtheta}{pxJ matrix of posterior SD estimates for thetaj's}
+  \item{A}{pxp estimated posterior mean of variance matrix A}
+  \item{rtA}{p-vector of between group SD estimates}
+
+  If \code{brief = 1}, the following elements are returned (in addition
+  to elements returned by \code{brief = 0}:
+  \item{Dgamma}{rxr estimated posterior covariance matrix for Gamma}
+  \item{Vtheta}{pxpxJ array of estimated covariances for thetaj's}
+  \item{B0}{pxpxN array of simulated B0 values}
+  \item{lr}{N-vector of log density ratios for each B0 value}
+
+  If \code{brief = 2}, the following elements are returned (in addition
+  to elements returned by \code{brief = 0} and \code{brief = 1}:
+  \item{lf}{N-vector of log f(B0|Y) evaluated at each B0}
+  \item{lf0}{N-vector of log f0(B0|Y) evaluated at each B0 (f0 is the CWish envelope density for f)}
+  \item{df}{degrees of freedom for f0}
+  \item{Sigma}{scale matrix for f0}
+  \item{nvec}{number of matrices begun, diagonal and off-diagonal elements simulated to get N CWish matrices}
+  \item{nrej}{number of rejections that occurred at each step 1,..,p}
 }
 \references{
   Everson PJ, Morris CN (2000). "Inference for Multivariate Normal
@@ -47,7 +65,7 @@ tlnise(Y, V, w = NA, V0 = NA, prior = NA, N = 1000, seed = 10,
   B, 62 (6) 399--412.
 }
 
-\author{Philip Everson, Roger D. Peng}
+\author{S-PLUS original by Philip Everson, R port by Roger D. Peng <rpeng@jhsph.edu>}
 
 
 \seealso{\code{\link{initTLNise}}}
