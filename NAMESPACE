@@ -1,2 +1,4 @@
 export("tlnise")
-export("drawSample", "sampleGamma")
+export("initTLNise", "drawSample", "sampleGamma")
+
+useDynLib(tlnise)
