@@ -69,7 +69,7 @@ sampleGamma <- function(tlnise.out, V, Y, W = NULL) {
 ##     drop(draw[coin == 1, ])
 ## }
 
-drawSample2 <- function(sg.out, n = 1000) {
+drawSample <- function(sg.out, n = 1000) {
     gammastar <- sg.out$gammastar
     Dstar <- sg.out$Dstar
     N <- NROW(gammastar)
