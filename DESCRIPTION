@@ -2,7 +2,7 @@ Package:  tlnise
 Depends:  R (>= 2.0.0)
 LazyLoad:  yes
 Version:  1.0
-Date:  2005-02-07
+Date:  2005-03-13
 Title:  Two level Normal independent sampling estimation
 Author:  S-PLUS original by Phil Everson; R port by Roger D. Peng <rpeng@jhsph.edu>
 Maintainer:  Roger D. Peng <rpeng@jhsph.edu>
