@@ -1,0 +1,2 @@
+export("tlnise")
+export("initTLNise", "drawSample", "sampleGamma")
