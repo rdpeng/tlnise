@@ -1,2 +1,2 @@
 export("tlnise")
-export("initTLNise", "drawSample", "sampleGamma")
+export("drawSample", "sampleGamma")
