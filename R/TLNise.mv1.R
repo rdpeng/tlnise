@@ -1,6 +1,7 @@
 ############## Two-Level Normal independent sampling estimation  ##############
 ##############       SUPPORTS MULTIVARIATE OUTCOMES
-############## Copyright 2000, Phil Everson, Swarthmore College. ######################
+############## Copyright 2000, Phil Everson, Swarthmore College. ##############
+
 tlnise<-function(Y,V,w=NA,V0=NA,prior=NA,N=1000,seed=10,
                  Tol=1e-6,maxiter=1000,intercept=TRUE,labelY=NA,labelYj=NA,
                  labelw=NA,digits=4,brief=1,prnt=TRUE){
@@ -84,9 +85,6 @@ tlnise<-function(Y,V,w=NA,V0=NA,prior=NA,N=1000,seed=10,
     ##           elements simulated to get N CWish matrices.
     ##    nrej: number of rejections that occurred at each step 1,..,p.
 ######################
-    ## Initialize random number generator
-    initTLNise()
-    ##
     ## Check inputs:
     out.chk<-checkcon(Y,V,w,intercept,prior,prnt)
     ## sets Y: pxJ, w: qxJ, V: pxpxJ
@@ -265,10 +263,6 @@ tlnise<-function(Y,V,w=NA,V0=NA,prior=NA,N=1000,seed=10,
     if(brief>2)
         out<-list(out.mode, outU=outU, out.lf=out.lf)
     out}
-
-## source("/home/everson/TLNise/tlnise.mv1.src")
-## out<-tlnise(Y,V,w,seed=123456789)
-
 
 
 postmode.f<-function(Y,V,w,rtV0,prior,Astart,EPS,MAXIT,K,p,q,r){
