@@ -65,7 +65,7 @@ tlnise(Y, V, w = NA, V0 = NA, prior = NA, N = 1000, seed = 10,
   B, 62 (6) 399--412.
 }
 
-\author{S-PLUS original by Philip Everson, R port by Roger D. Peng}
+\author{S-PLUS original by Philip Everson; R port by Roger D. Peng}
 
 \seealso{\code{\link{initTLNise}}}
 \examples{
