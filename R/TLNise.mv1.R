@@ -496,26 +496,3 @@ ldet<-function(A){
     ## calculate log(det(A)):
     sum(log(abs(diag(qr(A)[[1]]))))
 }
-
-
-
-###################################################################
-
-## The following functions were added by Roger Peng but are not called
-## by any other routines (2004/01/05)
-
-standard.f2 <- function(Y, V, Vo) {
-    eigVo <- eigen(Vo)
-    rtVo <- eigVo$vectors %*% sqrt(diag(eigVo$values)) %*% t(eigVo$vectors)
-    rtVoInv <- solve(rtVo)
-    Yr <- rtVoInv %*% t(Y)
-    Vr <- array(apply(V, 3, function(v) rtVoInv %*% v %*% rtVoInv),
-                c(NCOL(Y), NCOL(Y), NROW(Y)))
-
-    list(Y = t(Yr), V = Vr, rtVo = rtVo)
-}
-
-mammult2 <- function(M, A, tM) {
-    stopifnot(length(dim(A)) == 3)
-    array(apply(A, 3, function(a) M %*% a %*% tM), dim(A))
-}
