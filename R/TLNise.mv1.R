@@ -2,8 +2,8 @@
 ##############       SUPPORTS MULTIVARIATE OUTCOMES
 ############## Copyright 2000, Phil Everson, Swarthmore College. ######################
 tlnise<-function(Y,V,w=NA,V0=NA,prior=NA,N=1000,seed=10,
-                 Tol=1e-6,maxiter=1000,intercept=T,labelY=NA,labelYj=NA,
-                 labelw=NA,digits=4,brief=1,prnt=T){
+                 Tol=1e-6,maxiter=1000,intercept=TRUE,labelY=NA,labelYj=NA,
+                 labelw=NA,digits=4,brief=1,prnt=TRUE){
     ##
     ## This program is free and may be redistributed as long as
     ## the copyright is preserved. 
@@ -97,7 +97,7 @@ tlnise<-function(Y,V,w=NA,V0=NA,prior=NA,N=1000,seed=10,
     r<-p*q
     prior<-out.chk$prior
     if(prnt)
-        print(paste("******** Prior Parameter =",prior),quote=F)
+        print(paste("******** Prior Parameter =",prior),quote=FALSE)
     if(missing(V0)) V0<-apply(V,c(1,2),mean)
     if(max(abs(V0-diag(p))) < Tol){
         Ys<-Y
@@ -117,7 +117,7 @@ tlnise<-function(Y,V,w=NA,V0=NA,prior=NA,N=1000,seed=10,
     ##  B0 = (I+A*)^{-1}  (A* = rtV0^-1%*%A%*%rtV0^-1).
     if(prnt){
         cat("\n")
-        print("******** Locating Posterior Mode ************ ",quote=F)
+        print("******** Locating Posterior Mode ************ ",quote=FALSE)
         cat("\n")
     }
     Astart<-diag(p)
@@ -135,7 +135,7 @@ tlnise<-function(Y,V,w=NA,V0=NA,prior=NA,N=1000,seed=10,
     ## mode(f0) = (df-p-1)*Sigma = modeB0.
     ##
     ## Set d as the eigenvalues of Sigma^{-1}, ordered smallest to largest:
-    eigS<-eigen(Sigma,symmetric=T)
+    eigS<-eigen(Sigma,symmetric=TRUE)
     d<-1/eigS[[1]]
     ##
     ## Compute the inverse of Sigma, Siginv, and a square root matrix
@@ -158,23 +158,23 @@ tlnise<-function(Y,V,w=NA,V0=NA,prior=NA,N=1000,seed=10,
     iter<-out.mode[[16]]
     if(prnt){
         if(iter<maxiter){
-            print(paste("Converged in",iter,"EM iterations."),quote=F)
+            print(paste("Converged in",iter,"EM iterations."),quote=FALSE)
         }
         else{
-            print(paste("Did not converge in maxiter =",maxiter,"EM steps."),quote=F)
+            print(paste("Did not converge in maxiter =",maxiter,"EM steps."),quote=FALSE)
         }
-        print("Posterior mode of B0:",quote=F)
+        print("Posterior mode of B0:",quote=FALSE)
         cat("\n")
         print(modeB0,digits)
         cat("\n")
         print(paste(
                     "lf(modeB0) =",signif(lfmode,digits),"; lf0(modeB0) =",
-                    signif(lf0mode,digits),"; adj =", signif(adj,digits)),quote=F)
+                    signif(lf0mode,digits),"; adj =", signif(adj,digits)),quote=FALSE)
     }
     if(missing(seed)) seed <- ceiling(runif(1)*1e8)
     if(prnt) {
         cat("\n")
-        print("******** Drawing Constrained Wisharts ******** ",quote=F)
+        print("******** Drawing Constrained Wisharts ******** ",quote=FALSE)
         cat("\n")
     }
     ## Generate N Constrained-Wishart(df,I;D) draws:
@@ -190,7 +190,7 @@ tlnise<-function(Y,V,w=NA,V0=NA,prior=NA,N=1000,seed=10,
     if(prnt){
         cat("\n")
         print(paste("CWish acceptance rate =",N,"/",nvec[1],"=",
-                    signif(N/nvec[1],digits)),quote=F)
+                    signif(N/nvec[1],digits)),quote=FALSE)
     }
     ##
     ## Rotate Ui's to get B0i's:
@@ -198,7 +198,7 @@ tlnise<-function(Y,V,w=NA,V0=NA,prior=NA,N=1000,seed=10,
     ##
     if(prnt){
         cat("\n")
-        print("******** Processing Draws ************** ",quote=F)
+        print("******** Processing Draws ************** ",quote=FALSE)
         cat("\n")
     }
     out.lf<-lfB0.f(B0vals,Ys,Vs,w,rtV0,df,Siginv,N,J,p,q,r,prior,adj)
@@ -210,7 +210,7 @@ tlnise<-function(Y,V,w=NA,V0=NA,prior=NA,N=1000,seed=10,
     avewt<-mean(exp(lr-max(lr)))
     if(prnt){
         print(paste("Average scaled importance weight =",
-                    signif(avewt,digits)),quote=F)
+                    signif(avewt,digits)),quote=FALSE)
         cat("\n")
     }
     meanA<-rtV0%*%(out.lf$meanA)%*%rtV0
@@ -218,10 +218,10 @@ tlnise<-function(Y,V,w=NA,V0=NA,prior=NA,N=1000,seed=10,
     else{ rtA<-sqrt(diag(meanA))}
     ##
     if(prnt){
-        print("Posterior mean estimate of A:",quote=F)
+        print("Posterior mean estimate of A:",quote=FALSE)
         print(meanA, digits)
         cat("\n")
-        print("Between-group SD estimate:", quote=F)
+        print("Between-group SD estimate:", quote=FALSE)
         print(rtA,digits)
         cat("\n")
     }
@@ -429,8 +429,8 @@ checkcon<-function(Y,V,w,intercept,prior,prnt){
     if(!is.na(prior)) {
         if(J-q+prior < 1){
             if(prnt){
-                print(paste("insufficient data for prior parameter =",prior,"."),quote=F)
-                print("need J-q-p-1 + prior > 0", quote=F)
+                print(paste("insufficient data for prior parameter =",prior,"."),quote=FALSE)
+                print("need J-q-p-1 + prior > 0", quote=FALSE)
             }
             prior<-max(prior,-(p+1))
         }
