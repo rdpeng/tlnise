@@ -84,6 +84,8 @@ tlnise<-function(Y,V,w=NA,V0=NA,prior=NA,N=1000,seed=10,
     ##           elements simulated to get N CWish matrices.
     ##    nrej: number of rejections that occurred at each step 1,..,p.
 ######################
+    ## Initialize random number generator
+    initTLNise()
     ##
     ## Check inputs:
     out.chk<-checkcon(Y,V,w,intercept,prior,prnt)
@@ -171,7 +173,7 @@ tlnise<-function(Y,V,w=NA,V0=NA,prior=NA,N=1000,seed=10,
                     "lf(modeB0) =",signif(lfmode,digits),"; lf0(modeB0) =",
                     signif(lf0mode,digits),"; adj =", signif(adj,digits)),quote=FALSE)
     }
-    if(missing(seed)) seed <- ceiling(runif(1)*1e8)
+    if(missing(seed)) seed <- ceiling(runif(1) * 1e8)
     if(prnt) {
         cat("\n")
         print("******** Drawing Constrained Wisharts ******** ",quote=FALSE)
