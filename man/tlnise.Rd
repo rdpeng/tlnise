@@ -1,6 +1,9 @@
 \name{tlnise}
 \alias{tlnise}
 \alias{initTLNise}
+
+\concept{Hierarchical Normal model}
+
 \title{TLNise}
 \description{
   Two level Normal independent sampling estimation
@@ -32,7 +35,9 @@ initTLNise()
   \item{prnt}{controls printing during execution}
 }
 \details{
-%  The prior is p(B0) = |B0|^{(prior-p-1)/2}.  Note that
+  The prior is \eqn{p(B0) = |B0|^{(prior-p-1)/2}}{p(B_0) =
+    |B_0|^{(\mbox{prior}-p-1)/2}}.  Note that
+  
   prior = -(p+1): uniform on level-2 covariance matrix A (default) 
   prior =      0: Jeffreys' prior
   prior =  (p+1): uniform on shrinkage matrix B0
@@ -44,23 +49,22 @@ initTLNise()
   reproducibility of results). 
 }
 \value{
-  If \code{brief = 0}, the a list with the following components is returned:
+  \code{tlnise} returns a list, the precise contents of which depends on
+  the value of the \code{brief} argument.  Setting \code{brief = 2}
+  returns the maximum amount of information.  Setting \code{brief = 1}
+  or \code{brief = 0} returns a subset of that information.
+
+  If \code{brief = 2}, the a list with the following components is returned:
   \item{gamma}{matrix of posterior mean and SD estimates of Gamma, and
     thei ratios}
   \item{theta}{pxJ matrix of posterior mean estimates for thetaj's}
   \item{SDtheta}{pxJ matrix of posterior SD estimates for thetaj's}
   \item{A}{pxp estimated posterior mean of variance matrix A}
   \item{rtA}{p-vector of between group SD estimates}
-
-  If \code{brief = 1}, the following elements are returned (in addition
-  to elements returned by \code{brief = 0}:
   \item{Dgamma}{rxr estimated posterior covariance matrix for Gamma}
   \item{Vtheta}{pxpxJ array of estimated covariances for thetaj's}
   \item{B0}{pxpxN array of simulated B0 values}
   \item{lr}{N-vector of log density ratios for each B0 value}
-
-  If \code{brief = 2}, the following elements are returned (in addition
-  to elements returned by \code{brief = 0} and \code{brief = 1}:
   \item{lf}{N-vector of log f(B0|Y) evaluated at each B0}
   \item{lf0}{N-vector of log f0(B0|Y) evaluated at each B0 (f0 is the CWish envelope density for f)}
   \item{df}{degrees of freedom for f0}
