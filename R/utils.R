@@ -82,18 +82,17 @@ sampleGamma <- function(tlnise.out, V, Y, W = NULL) {
     list(gamma = gamma, gammastar = gs, A = A, wt = wt, Dstar = Dstar)
 }
 
-## drawSample <- function(sg.out, n = 100) {
-##     gammastar <- sg.out$gammastar
-##     Dstar <- sg.out$Dstar
-##     draw <- lapply(seq(NROW(gammastar)), function(i) {
-##         mvrnorm(n, gammastar[i, ], Dstar[[i]])
-##     })
-##     draw <- do.call("rbind", draw)
-##     w <- sg.out$wt
-##     p <- rep(w / sum(w), each = n)
-##     coin <- rbinom(NROW(draw), 1, p)
-##     drop(draw[coin == 1, ])
-## }
+drawSample0 <- function(sg.out, n = 1000) {
+    gammastar <- sg.out$gammastar
+    Dstar <- sg.out$Dstar
+    N <- NROW(gammastar)
+    w <- sg.out$wt
+    draw <- lapply(seq(n), function(i) {
+        use <- sample(1:N, 1, prob = w)
+        mvrnorm(1, gammastar[use, ], Dstar[[use]])
+    })
+    do.call("rbind", draw)
+}
 
 drawSample <- function(tlnise.out, n = 1000, Y, V, W = NULL) {
     sg.out <- sampleGamma(tlnise.out, V, Y, W)
