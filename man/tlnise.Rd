@@ -75,7 +75,6 @@ initTLNise()
 
 \author{S-PLUS original by Philip Everson; R port by Roger D. Peng}
 
-%\seealso{\code{\link{initTLNise}}}
 \examples{
 ## None right now
 }
