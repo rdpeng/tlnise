@@ -81,6 +81,8 @@ initTLNise()
 \author{S-PLUS original by Philip Everson; R port by Roger D. Peng}
 
 \examples{
-## None right now
+x <- rnorm(10)
+y <- rnorm(10, x)
+out <- tlnise(Y = y, V = rep(1, 10), w = rep(1, 10))
 }
 \keyword{models}% at least one, from doc/KEYWORDS
