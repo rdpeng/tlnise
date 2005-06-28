@@ -2,6 +2,10 @@
 ##############       SUPPORTS MULTIVARIATE OUTCOMES
 ############## Copyright 2000, Phil Everson, Swarthmore College. ##############
 
+######################################################################
+## Minor changes for R port Copyright (C) 2004-2005, Roger D. Peng <rpeng@jhsph.edu>
+######################################################################
+
 tlnise<-function(Y,V,w=NA,V0=NA,prior=NA,N=1000,seed=10,
                  Tol=1e-6,maxiter=1000,intercept=TRUE,labelY=NA,labelYj=NA,
                  labelw=NA,digits=4,brief=1,prnt=TRUE){
@@ -298,7 +302,7 @@ postmode.f<-function(Y,V,w,rtV0,prior,Astart,EPS,MAXIT,K,p,q,r){
                   as.integer(indxp), 
                   as.integer(indxp), ## indxp2 
                   as.integer(indxpk),   ## 30
-                  as.integer(indxr))
+                  as.integer(indxr), PACKAGE = "tlnise")
     out
 }
 
@@ -336,8 +340,8 @@ rscwish<-function(N,p,df,d,pd,seed){
                   as.integer(0),       ## mcnt
                   as.integer(0),       ## drvcnt
                   as.integer(0),       ## orvcnt
-                  as.integer(Z)        ## rejcnt
-                  )
+                  as.integer(Z),        ## rejcnt
+                  PACKAGE = "tlnise")
     list(Ua=out[[1]],nvec=c(out[[16]],out[[17]],out[[18]]),nrej=c(out[[19]]))
 }
 
@@ -373,8 +377,10 @@ lfB0.f<-function(B0vals, Y, V, w, rtV0, df,Siginv,N,J,p,q,r,
                   as.double(Vtheta),as.double(resid),as.double(A),as.double(A),  
                   as.double(A),as.double(Dgam), as.double(Vtheta),as.double(Yj), ##35
                   as.double(A),as.double(Wj), as.double(t(Wj)),as.double(A),
-                  as.integer(Yj),as.integer(Yj),as.integer(resid),as.integer(gamma)) ##43
-    out}
+                  as.integer(Yj),as.integer(Yj),as.integer(resid),as.integer(gamma), ##43
+                  PACKAGE = "tlnise")
+    out
+}
 
 
 checkcon<-function(Y,V,w,intercept,prior,prnt){
@@ -455,7 +461,8 @@ standard.f<-function(Y,V,Vo){
     Vj<-rtVo<-0*Vo
     indxp<-rep(0,p)
     out<-.Fortran("standardize", Y=Y, V=V, Vo=Vo,as.integer(p),as.integer(J), 
-                  as.double(Yj), Vj=Vj,rtVo=rtVo,as.integer(indxp))
+                  as.double(Yj), Vj=Vj,rtVo=rtVo,as.integer(indxp),
+                  PACKAGE = "tlnise")
     list(Y=out$Y, V=out$V, rtVo=out$rtVo)
 }
 
@@ -477,7 +484,8 @@ mammult<-function(M,A,tM){
                   as.integer(N),
                   as.double(0*M), ## U
                   as.double(0*M), ## V
-                  MAM=MAM
+                  MAM=MAM,
+                  PACKAGE = "tlnise"
                   )
     out$MAM
 }
