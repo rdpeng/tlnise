@@ -1,4 +1,4 @@
-citHeader("The current reference is:")
+citHeader("Please cite the following article when using 'TLNise':")
 
 citEntry(entry = "article",
          title = "Inference for Multivariate Normal Hierarchical Models",
