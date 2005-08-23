@@ -36,5 +36,13 @@ drawSample0(sg.out, n = 1000)
 
 \examples{
 ## None
+x <- rnorm(10)  ## Second level
+y <- rnorm(10, x)  ## First level means
+
+initTLNise()
+out <- tlnise(Y = y, V = rep(1, 10), w = rep(1, 10), seed = 1234)
+
+library(MASS)
+samp <- drawSample(out, 1000, y, rep(1, length(y)))
 }
 \keyword{models}% at least one, from doc/KEYWORDS
