@@ -81,8 +81,10 @@ initTLNise()
 \author{S-PLUS original by Philip Everson; R port by Roger D. Peng}
 
 \examples{
-x <- rnorm(10)
-y <- rnorm(10, x)
-out <- tlnise(Y = y, V = rep(1, 10), w = rep(1, 10))
+x <- rnorm(10)  ## Second level
+y <- rnorm(10, x)  ## First level means
+
+initTLNise()
+out <- tlnise(Y = y, V = rep(1, 10), w = rep(1, 10), seed = 1234)
 }
 \keyword{models}% at least one, from doc/KEYWORDS
