@@ -36,11 +36,11 @@ initTLNise()
 }
 \details{
   The prior is \eqn{p(B0) = |B0|^{(prior-p-1)/2}}{p(B_0) =
-    |B_0|^{(\mbox{prior}-p-1)/2}}.  Note that
+    |B_0|^{(prior - p - 1)/2}}.  Note that
   
-  prior = -(p+1): uniform on level-2 covariance matrix A (default) 
-  prior =      0: Jeffreys' prior
-  prior =  (p+1): uniform on shrinkage matrix B0
+  \item{prior = -(p+1)}{uniform on level-2 covariance matrix A (default)}
+  \item{prior =      0}{Jeffreys' prior}
+  \item{prior =  (p+1)}{uniform on shrinkage matrix B0}
 }
 \note{
   \code{initTLNise} needs to be called to initialize the random number
