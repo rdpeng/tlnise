@@ -1,8 +1,9 @@
-The file
+The files
 
 R/TLNise.mv1.R 
+src/tlnisemv1.f
 
-in this package is copyright Phil Everson.  See the top of the file
+in this package are copyright Phil Everson.  See the top of the file
 for conditions under which you may redistribute it.
 
 
