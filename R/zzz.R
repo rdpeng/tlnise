@@ -1,6 +1,6 @@
 .onAttach <- function(lib, pkg) {
-    ver <- read.dcf(file.path(lib, pkg, "DESCRIPTION"), "Version")
-    msg <- paste("Two level Normal independent sampling estimation (version ",
-                 as.character(ver), ")", sep = "")
+    desc <- read.dcf(file.path(lib, pkg, "DESCRIPTION"))
+    msg <- paste(desc[, "Title"], " (version ",
+                 as.character(desc[, "Version"]), ")\n", sep = "")
     writeLines(strwrap(msg))
 }
