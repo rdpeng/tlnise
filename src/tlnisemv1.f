@@ -436,7 +436,7 @@ C Returns H as the pxp expected level-2 sum of squared deviations,
 C given that A is the correct level-2 covariance matrix:
 C  H = E(sum((Yi-Wi%*%gamma)%*%(Yi-Wi%*%gamma)').
 C
-      INTEGER i,j,l
+      INTEGER i,j,l,t
       DOUBLE PRECISION dum
 C Initialize H:
       do 70 j=1,p
