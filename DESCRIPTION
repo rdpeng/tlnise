@@ -1,5 +1,5 @@
 Package:  tlnise
-Depends:  R (>= 2.3.1)
+Depends:  R (>= 2.4.1)
 Imports:  stats
 Version:  0.2-6
 Date:  2007-04-27
