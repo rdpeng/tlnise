@@ -1,8 +1,9 @@
 Package:  tlnise
-Depends:  R (>= 2.4.1)
+Depends:  R (>= 2.6.0)
+Suggests:  MASS
 Imports:  stats
-Version:  0.2-6
-Date:  2007-04-27
+Version:  0.2-7
+Date:  2008-03-25
 Title:  Two-level normal independent sampling estimation
 Author:  S-PLUS original by Phil Everson; R port by Roger D. Peng <rpeng@jhsph.edu>
 Maintainer:  Roger D. Peng <rpeng@jhsph.edu>

@@ -88,6 +88,8 @@ drawSample0 <- function(sg.out, n = 1000) {
 }
 
 drawSample <- function(tlnise.out, n = 1000, Y, V, W = NULL) {
+        if(!require(MASS))
+                stop("'MASS' package required for 'drawSample'")
         sg.out <- sampleGamma(tlnise.out, V, Y, W)
         gammastar <- sg.out$gammastar
         Dstar <- sg.out$Dstar
