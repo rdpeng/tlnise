@@ -1,6 +1,6 @@
 
-R version 2.5.0 (2007-04-23)
-Copyright (C) 2007 The R Foundation for Statistical Computing
+R version 2.6.2 (2008-02-08)
+Copyright (C) 2008 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -16,7 +16,7 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > library(tlnise)
-Two-level normal independent sampling estimation (version 0.2-6)
+Two-level normal independent sampling estimation (version 0.2-7)
 > 
 > ## Check output of tlnise
 > 
