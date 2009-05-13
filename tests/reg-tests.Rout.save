@@ -1,5 +1,5 @@
 
-R version 2.9.0 Under development (unstable) (--)
+R version 2.9.0 Patched (--)
 Copyright (C)  The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 
@@ -16,7 +16,7 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > library(tlnise)
-Two-level normal independent sampling estimation (version 1.0)
+Two-level normal independent sampling estimation (version 1.0-1)
 > 
 > ## Check output of tlnise
 > 
