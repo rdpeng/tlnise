@@ -1001,9 +1001,10 @@ C
       INTEGER idum2,j,k,iv(NTAB),iy
       SAVE iv,iy,idum2
       DATA idum2/123456789/ , iv/NTAB*0/, iy/0/
+
       if(idum.le.0) then
 C initialize
-       idum=max(idum,1)
+       idum=-idum
 C prevent idum=0
        idum2=idum
        do 100 j=NTAB+8,1,-1

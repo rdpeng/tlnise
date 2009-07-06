@@ -6,7 +6,7 @@
 ## Minor changes for R port Copyright (C) 2004-2005, Roger D. Peng <rpeng@jhsph.edu>
 ######################################################################
 
-tlnise<-function(Y,V,w=NA,V0=NA,prior=NA,N=1000,seed=10,
+tlnise<-function(Y,V,w=NA,V0=NA,prior=NA,N=1000,seed=NULL,
                  Tol=1e-6,maxiter=1000,intercept=TRUE,labelY=NA,labelYj=NA,
                  labelw=NA,digits=4,brief=1,prnt=TRUE){
     ##
@@ -175,7 +175,10 @@ tlnise<-function(Y,V,w=NA,V0=NA,prior=NA,N=1000,seed=10,
                     "lf(modeB0) =",signif(lfmode,digits),"; lf0(modeB0) =",
                     signif(lf0mode,digits),"; adj =", signif(adj,digits)),quote=FALSE)
     }
-    if(missing(seed)) seed <- ceiling(runif(1) * 1e8)
+    if(is.null(seed))
+            seed <- ceiling(runif(1) * 1e8)
+    if(seed > 0)
+            seed <- -seed
     if(prnt) {
         cat("\n")
         print("******** Drawing Constrained Wisharts ******** ",quote=FALSE)

@@ -9,7 +9,7 @@
   Two level Normal independent sampling estimation
 }
 \usage{
-tlnise(Y, V, w = NA, V0 = NA, prior = NA, N = 1000, seed = 10,
+tlnise(Y, V, w = NA, V0 = NA, prior = NA, N = 1000, seed = -10,
        Tol = 1e-06, maxiter = 1000, intercept = TRUE, labelY = NA,
        labelYj = NA, labelw = NA, digits = 4, brief = 1, prnt = TRUE)
 
@@ -23,7 +23,7 @@ initTLNise()
   \item{V0}{"typical" Vj (default is average of Vj's)}
   \item{prior}{prior parameter (see Details)}
   \item{N}{number of Constrained Wishart draws for inference}
-  \item{seed}{seed for random number generator}
+  \item{seed}{seed for the random number generator}
   \item{Tol}{tolerance for determining modal convergence}
   \item{maxiter}{maximum number of EM iterations for finding mode}
   \item{intercept}{if \code{TRUE}, an intercept term is included in the regression}
