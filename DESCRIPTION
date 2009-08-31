@@ -1,5 +1,5 @@
 Package:  tlnise
-Depends:  R (>= 2.8.0)
+Depends:  R (>= 2.9.0)
 Suggests:  MASS
 Imports:  stats
 Version:  1.1
