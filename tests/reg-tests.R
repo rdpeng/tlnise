@@ -6,7 +6,6 @@ set.seed(2034)
 x <- rnorm(10)  ## Second level
 y <- rnorm(10, x)  ## First level means
 
-initTLNise()
 out <- tlnise(Y = y, V = rep(1, 10), w = rep(1, 10), seed = 1234)
 
 str(out)
@@ -153,7 +152,6 @@ v <- c(0.00000399680511659135, 0.0000424254252945438, 0.0000338306371059458,
        0.0000645513206998557, 0.0000561506094444819, 0.00000327007445922052, 
        0.000016034211707281)
 
-initTLNise()
 out <- tlnise(b, v, seed = 435235)
 
 str(out)
