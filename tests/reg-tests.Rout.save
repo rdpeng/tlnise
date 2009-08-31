@@ -1,5 +1,5 @@
 
-R version 2.9.0 Patched (--)
+R version 2.9.2 Patched (--)
 Copyright (C)  The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 
@@ -16,7 +16,7 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > library(tlnise)
-Two-level normal independent sampling estimation (version 1.0-1)
+Two-level normal independent sampling estimation (version 1.1)
 > 
 > ## Check output of tlnise
 > 
@@ -24,7 +24,6 @@ Two-level normal independent sampling estimation (version 1.0-1)
 > x <- rnorm(10)  ## Second level
 > y <- rnorm(10, x)  ## First level means
 > 
-> initTLNise()
 > out <- tlnise(Y = y, V = rep(1, 10), w = rep(1, 10), seed = 1234)
 [1] ******** Prior Parameter = -2
 
@@ -49,32 +48,32 @@ Two-level normal independent sampling estimation (version 1.0-1)
 
 [1] Posterior mean estimate of A:
       [,1]
-[1,] 1.243
+[1,] 1.286
 
 [1] Between-group SD estimate:
       [,1]
-[1,] 1.115
+[1,] 1.134
 
 > 
 > str(out)
 List of 9
- $ gamma  : num [1, 1:3] 0.413 0.474 0.872
+ $ gamma  : num [1, 1:3] 0.413 0.478 0.864
   ..- attr(*, "dimnames")=List of 2
   .. ..$ : chr "0"
   .. ..$ : chr [1:3] "est" "se" "est/se"
- $ theta  : Named num [1:10] 0.2942 1.202 0.1058 0.0111 0.4421 ...
+ $ theta  : Named num [1:10] 0.2979 1.1778 0.1153 0.0235 0.4412 ...
   ..- attr(*, "names")= chr [1:10] "1" "2" "3" "4" ...
- $ SDtheta: Named num [1:10] 0.708 0.811 0.722 0.734 0.705 ...
+ $ SDtheta: Named num [1:10] 0.699 0.807 0.714 0.727 0.697 ...
   ..- attr(*, "names")= chr [1:10] "1" "2" "3" "4" ...
- $ A      : num [1, 1] 1.24
- $ rtA    : num [1, 1] 1.11
- $ Dgamma : num [1, 1] 0.224
+ $ A      : num [1, 1] 1.29
+ $ rtA    : num [1, 1] 1.13
+ $ Dgamma : num [1, 1] 0.229
   ..- attr(*, "dimnames")=List of 2
   .. ..$ : chr "0"
   .. ..$ : chr "0"
- $ Vtheta : num [1, 1, 1:10] 0.501 0.657 0.522 0.539 0.498 ...
- $ B0     : num [1, 1, 1:1000] 0.393 0.258 0.233 0.463 0.927 ...
- $ lr     : num [1:1000] -1.22e-06 -2.62e-06 -2.88e-06 -4.96e-07 4.32e-06 ...
+ $ Vtheta : num [1, 1, 1:10] 0.489 0.652 0.51 0.528 0.485 ...
+ $ B0     : num [1, 1, 1:1000] 0.378 0.764 0.531 0.507 0.954 ...
+ $ lr     : num [1:1000] -1.38e-06 2.63e-06 2.10e-07 -3.13e-08 4.60e-06 ...
 > 
 > 
 > ######################################################################
@@ -218,7 +217,6 @@ List of 9
 +        0.0000645513206998557, 0.0000561506094444819, 0.00000327007445922052, 
 +        0.000016034211707281)
 > 
-> initTLNise()
 > out <- tlnise(b, v, seed = 435235)
 [1] ******** Prior Parameter = -2
 
@@ -239,40 +237,40 @@ List of 9
 
 [1] ******** Processing Draws ************** 
 
-[1] Average scaled importance weight = 0.3248
+[1] Average scaled importance weight = 0.3318
 
 [1] Posterior mean estimate of A:
           [,1]
-[1,] 1.177e-06
+[1,] 1.118e-06
 
 [1] Between-group SD estimate:
          [,1]
-[1,] 0.001085
+[1,] 0.001058
 
 > 
 > str(out)
 List of 9
- $ gamma  : num [1, 1:3] 0.001294 0.000252 5.14028
+ $ gamma  : num [1, 1:3] 0.00129 0.00025 5.153838
   ..- attr(*, "dimnames")=List of 2
   .. ..$ : chr "0"
   .. ..$ : chr [1:3] "est" "se" "est/se"
- $ theta  : Named num [1:202] 0.00133 0.00118 0.00165 0.00124 0.00122 ...
+ $ theta  : Named num [1:202] 0.00133 0.00118 0.00163 0.00124 0.00122 ...
   ..- attr(*, "names")= chr [1:202] "1" "2" "3" "4" ...
- $ SDtheta: Named num [1:202] 0.000942 0.001091 0.001121 0.001092 0.001004 ...
+ $ SDtheta: Named num [1:202] 0.000924 0.001065 0.001095 0.001066 0.000983 ...
   ..- attr(*, "names")= chr [1:202] "1" "2" "3" "4" ...
- $ A      : num [1, 1] 1.18e-06
- $ rtA    : num [1, 1] 0.00108
- $ Dgamma : num [1, 1] 6.34e-08
+ $ A      : num [1, 1] 1.12e-06
+ $ rtA    : num [1, 1] 0.00106
+ $ Dgamma : num [1, 1] 6.27e-08
   ..- attr(*, "dimnames")=List of 2
   .. ..$ : chr "0"
   .. ..$ : chr "0"
- $ Vtheta : num [1, 1, 1:202] 8.87e-07 1.19e-06 1.26e-06 1.19e-06 1.01e-06 ...
- $ B0     : num [1, 1, 1:1000] 0.883 0.833 0.822 0.989 0.974 ...
- $ lr     : num [1:1000] -4.6361 -8.006 -8.791 -0.1921 -0.0334 ...
+ $ Vtheta : num [1, 1, 1:202] 8.54e-07 1.13e-06 1.20e-06 1.14e-06 9.66e-07 ...
+ $ B0     : num [1, 1, 1:1000] 0.816 0.776 0.901 0.987 0.911 ...
+ $ lr     : num [1:1000] -9.245 -12.054 -3.474 -0.125 -2.839 ...
 > 
 > out$gamma  ## 'est' should be about 0.00128
-          est           se  est/se
-0 0.001294481 0.0002518308 5.14028
+          est           se   est/se
+0 0.001290493 0.0002503946 5.153838
 > 
 > ######################################################################
 > 
