@@ -44,12 +44,6 @@ initTLNise()
   is the uniform prior on shrinkage matrix B0.
   
 }
-\note{
-  \code{initTLNise} needs to be called to initialize the random number
-  generator used by \code{tlnise}.  Once \code{initTLNise} is called,
-  the \code{seed} argument to \code{tlnise} to be used (for
-  reproducibility of results). 
-}
 \value{
   \code{tlnise} returns a list, the precise contents of which depends on
   the value of the \code{brief} argument.  Setting \code{brief = 2}
