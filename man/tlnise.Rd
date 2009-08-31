@@ -9,11 +9,9 @@
   Two level Normal independent sampling estimation
 }
 \usage{
-tlnise(Y, V, w = NA, V0 = NA, prior = NA, N = 1000, seed = -10,
+tlnise(Y, V, w = NA, V0 = NA, prior = NA, N = 1000, seed = NULL,
        Tol = 1e-06, maxiter = 1000, intercept = TRUE, labelY = NA,
        labelYj = NA, labelw = NA, digits = 4, brief = 1, prnt = TRUE)
-
-initTLNise()
 }
 
 \arguments{
@@ -80,7 +78,6 @@ initTLNise()
 x <- rnorm(10)  ## Second level
 y <- rnorm(10, x)  ## First level means
 
-initTLNise()
 out <- tlnise(Y = y, V = rep(1, 10), w = rep(1, 10), seed = 1234)
 }
 \keyword{models}% at least one, from doc/KEYWORDS
