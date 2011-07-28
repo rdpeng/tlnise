@@ -455,7 +455,18 @@ checkcon<-function(Y,V,w,intercept,prior,prnt){
 }
 
 
-standard.f<-function(Y,V,Vo){
+standard.f <- function(Y, V, V0) {
+        s <- svd(V0)
+        rtV0 <- s$u %*% diag(sqrt(s$d)) %*% t(s$v)
+        Ys <- solve(rtV0, Y)
+        Vs <- array(dim = dim(V))
+        for(i in seq_len(dim(Vs)[3])) {
+                Vs[, , i] <- solve(rtV0, t(solve(rt, V[, , i])))
+        }
+        list(Y = Ys, V = Vs, rtVo = rtV0)
+}
+
+old.standard.f<-function(Y,V,Vo){
     ## Y is pxJ, V is pxpxJ and Vo is pxp. Generates rtVo, the
     ## symmetric square root matrix for Vo. Returns rtVo^{-1}%*%Y, 
     ##  rtVo^{-1}%*%V%*%rtVo^{-1}, and rtVo.
