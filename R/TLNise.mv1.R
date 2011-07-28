@@ -457,11 +457,14 @@ checkcon<-function(Y,V,w,intercept,prior,prnt){
 
 standard.f <- function(Y, V, V0) {
         s <- svd(V0)
-        rtV0 <- s$u %*% diag(sqrt(s$d)) %*% t(s$v)
+        n <- length(s$d)
+        ## The original code use SVD to find the square root matrix
+        ## rtV0 <- s$u %*% diag(sqrt(s$d), n, n) %*% t(s$v)
+        rtV0 <- chol(V0)
         Ys <- solve(rtV0, Y)
         Vs <- array(dim = dim(V))
         for(i in seq_len(dim(Vs)[3])) {
-                Vs[, , i] <- solve(rtV0, t(solve(rt, V[, , i])))
+                Vs[, , i] <- solve(rtV0, t(solve(rtV0, V[, , i, drop = FALSE])))
         }
         list(Y = Ys, V = Vs, rtVo = rtV0)
 }
