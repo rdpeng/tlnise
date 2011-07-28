@@ -469,22 +469,6 @@ standard.f <- function(Y, V, V0) {
         list(Y = Ys, V = Vs, rtVo = rtV0)
 }
 
-old.standard.f<-function(Y,V,Vo){
-    ## Y is pxJ, V is pxpxJ and Vo is pxp. Generates rtVo, the
-    ## symmetric square root matrix for Vo. Returns rtVo^{-1}%*%Y, 
-    ##  rtVo^{-1}%*%V%*%rtVo^{-1}, and rtVo.
-    p<-dim(Vo)[1]
-    J<-dim(V)[3]
-    Yj<-rep(0,p)
-    Vj<-rtVo<-0*Vo
-    indxp<-rep(0,p)
-    out<-.Fortran("standardize", Y=Y, V=V, Vo=Vo,as.integer(p),as.integer(J), 
-                  as.double(Yj), Vj=Vj,rtVo=rtVo,as.integer(indxp),
-                  PACKAGE = "tlnise")
-    list(Y=out$Y, V=out$V, rtVo=out$rtVo)
-}
-
-
 mammult<-function(M,A,tM){
     ## Calls Fortran subroutine "mammult" to pre-multiply by M
     ## (pxp) and post-multiply by tM (pxp) each of the N pxp  

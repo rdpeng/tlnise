@@ -1,8 +1,6 @@
 C This file contains subroutines called by the Splus function "tlnise"
 C (version mv1). (See Everson & Morris (2000) JRSS-B for details).
 C  
-C standardize:  Rotates Y and V so that mean(V*)=I.
-C ^^^^^^^^^^^
 C
 C MODE FINDER:
 C ^^^^^^^^^^^
@@ -108,63 +106,6 @@ C jacobid:      Returns eigenvalues and eigenvectors of a matrix.
 C ^^^^^^^
 C
 C
-      SUBROUTINE standardize(Y,V,Vo,p,J,Yj,Vj,rtVo,indxp)
-      INTEGER p,J,indxp(p)
-      DOUBLE PRECISION Y(p,J), V(p,p,J), Vo(p,p), Yj(p), 
-     $   Vj(p,p), rtVo(p,p)
-C Returns Y and V as rtVo^-1%*%Y and rtVo^-1%*%V%*%rtVo^-1, where rtVo 
-C is the symmetric pxp matrix square root of V (^-1 indicates inverse).
-      INTEGER jay,i,k
-      DOUBLE PRECISION d,dum
-C reset Vo as its matrix square root:
-      call rtmat(Vo, p, Yj, rtVo, Vj)
-C copy Vo to rtVo:
-      do 200 i=1,p
-       do 100 k=1,p
-        rtVo(i,k)=Vo(i,k)
- 100    continue
- 200   continue
-       call ludcmp(Vo, p,p,indxp, d)
-C Vo is now replaced by the LU decomposition of rtVo.
-      do 1200 jay=1,J
-C load Yj as Y(,jay) and Vj as V(,,jay):
-       do 400 i=1,p
-        Yj(i)=Y(i,jay)
-        do 300 k=1,p
-         Vj(i,k)=V(i,k,jay)
- 300    continue
- 400   continue
-C Backsubstitute to set Yj = rtVo^-1%*%Y(,j):
-       call lubksb(Vo,p,p,indxp,Yj)
-C Backsubstitute to set Vj = rtVo^-1%*%V(,,j):
-       do 500 i=1,p
-        call lubksb(Vo,p,p,indxp,Vj(1,i))
- 500   continue
-C replace Vj (now = rtVo^-1%*%V(,j)) by its transpose:
-       do 700 i=1,p
-        do 600 k=1,i-1
-         dum=Vj(i,k)
-         Vj(i,k)=Vj(k,i)
-         Vj(k,i)=dum
- 600    continue
- 700   continue
-C Backsubstitute to set Vj = rtVo^-1%*%V(,,j)%*%rtVo^-1:
-       do 800 i=1,p
-        call lubksb(Vo,p,p,indxp,Vj(1,i))
- 800   continue
-C Vj now contains rtVo^-1%*%Vj%*%rtVo^-1.
-C Replace Y(,j) and V(,,j) by Yj and Vj:
-       do 1100 i=1,p
-        Y(i,jay)=Yj(i)
-        do 1000 k=1,p
-         V(i,k,jay)=Vj(i,k)
- 1000    continue
- 1100   continue
- 1200  continue
-      RETURN
-      END
-
-
 C
 C %%%%%%%%%%%%%%%%%%%%%%%%%% MODE FINDER %%%%%%%%%%%%%%%%%%%%%%%%%
 C
