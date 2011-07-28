@@ -102,7 +102,8 @@ tlnise<-function(Y,V,w=NA,V0=NA,prior=NA,N=1000,seed=NULL,
     prior<-out.chk$prior
     if(prnt)
         print(paste("******** Prior Parameter =",prior),quote=FALSE)
-    if(missing(V0)) V0<-apply(V,c(1,2),mean)
+    if(missing(V0))
+            V0 <- rowMeans(V, dims = 2)
     if(max(abs(V0-diag(p))) < Tol){
         Ys<-Y
         Vs<-V
