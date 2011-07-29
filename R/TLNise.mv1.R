@@ -462,7 +462,7 @@ standard.f <- function(Y, V, V0) {
         Ys <- solve(rtV0, Y)
         Vs <- array(dim = dim(V))
         for(i in seq_len(dim(Vs)[3])) {
-                Vs[, , i] <- solve(rtV0, t(solve(rtV0, V[, , i, drop = FALSE])))
+                Vs[, , i] <- solve(rtV0, t(solve(rtV0, V[, , i])))
         }
         list(Y = Ys, V = Vs, rtVo = rtV0)
 }
