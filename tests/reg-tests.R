@@ -1,4 +1,4 @@
-library(tlnise)
+suppressPackageStartupMessages(library(tlnise))
 
 ## Check output of tlnise
 
