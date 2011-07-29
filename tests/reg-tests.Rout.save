@@ -1,7 +1,8 @@
 
-R version 2.9.2 Patched (--)
-Copyright (C)  The R Foundation for Statistical Computing
+R version 2.13.1 Patched (2011-07-29 r56548)
+Copyright (C) 2011 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
+Platform: x86_64-apple-darwin10.8.0 (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -250,7 +251,7 @@ List of 9
 > 
 > str(out)
 List of 9
- $ gamma  : num [1, 1:3] 0.00129 0.00025 5.153838
+ $ gamma  : num [1, 1:3] 0.00129 0.00025 5.15384
   ..- attr(*, "dimnames")=List of 2
   .. ..$ : chr "0"
   .. ..$ : chr [1:3] "est" "se" "est/se"
@@ -273,4 +274,82 @@ List of 9
 0 0.001290493 0.0002503946 5.153838
 > 
 > ######################################################################
+> ## Test multivariate TLNise
+> 
+> ## Some random covariance matrices simulated using the 'bayesm' package
+> V <- structure(c(10.1860962947155, 0.969493754514885, 0.969493754514885, 
++                  5.60509388430824, 2.98429825540546, -4.15235831192084, -4.15235831192084, 
++                  5.89530358088919, 5.9303209147463, -3.48383100994277, -3.48383100994277, 
++                  2.18989814288861, 0.940648850845214, 2.67567180320721, 2.67567180320721, 
++                  8.36460227313887, 3.06779431197503, 0.61886091359145, 0.61886091359145, 
++                  1.51696438440572, 2.43478090261727, -0.386199760832219, -0.386199760832219, 
++                  2.9573907303521, 1.17169557433051, 0.924294781827431, 0.924294781827431, 
++                  2.53657603349922, 4.76923917242757, 0.148936630218258, 0.148936630218258, 
++                  1.34982423924493, 0.515299751368239, 0.265641220542506, 0.265641220542506, 
++                  2.77504546518251, 0.702665634909078, 1.34791092935608, 1.34791092935608, 
++                  5.41520321251996), .Dim = c(2L, 2L, 10L))
+> 
+> library(MASS)
+> set.seed(2)
+> y <- sapply(1:10, function(i) mvrnorm(1, c(0,0), V[,,i]))
+> 
+> out <- tlnise(y, V, seed = 432)
+[1] ******** Prior Parameter = -3
+
+[1] ******** Locating Posterior Mode ************ 
+
+[1] Converged in 708 EM iterations.
+[1] Posterior mode of B0:
+
+        [,1]    [,2]
+[1,] 0.93961 0.04934
+[2,] 0.04934 0.95827
+
+[1] lf(modeB0) = -5.32 ; lf0(modeB0) = -3.161 ; adj = 2.159
+
+[1] ******** Drawing Constrained Wisharts ******** 
+
+
+[1] CWish acceptance rate = 1000 / 1706 = 0.5862
+
+[1] ******** Processing Draws ************** 
+
+[1] Average scaled importance weight = 0.4266
+
+[1] Posterior mean estimate of A:
+       [,1]   [,2]
+[1,] 5.8960 0.3237
+[2,] 0.3237 4.6157
+
+[1] Between-group SD estimate:
+[1] 2.428 2.148
+
+> 
+> str(out)
+List of 9
+ $ gamma  : num [1:2, 1:3] -0.428 0.859 0.872 0.857 -0.491 ...
+  ..- attr(*, "dimnames")=List of 2
+  .. ..$ : chr [1:2] "0" "1"
+  .. ..$ : chr [1:3] "est" "se" "est/se"
+ $ theta  : num [1:2, 1:10] 0.387 0.552 -1.121 1.204 -0.539 ...
+  ..- attr(*, "dimnames")=List of 2
+  .. ..$ : chr [1:2] "1" "2"
+  .. ..$ : chr [1:10] "1" "2" "3" "4" ...
+ $ SDtheta: num [1:2, 1:10] 1.731 1.488 0.924 1.281 1.267 ...
+  ..- attr(*, "dimnames")=List of 2
+  .. ..$ : chr [1:2] "1" "2"
+  .. ..$ : chr [1:10] "1" "2" "3" "4" ...
+ $ A      : num [1:2, 1:2] 5.896 0.324 0.324 4.616
+ $ rtA    : num [1:2] 2.43 2.15
+ $ Dgamma : num [1:2, 1:2] 0.7612 0.0194 0.0194 0.7346
+  ..- attr(*, "dimnames")=List of 2
+  .. ..$ : chr [1:2] "0" "1"
+  .. ..$ : chr [1:2] "0" "1"
+ $ Vtheta : num [1:2, 1:2, 1:10] 2.998 0.113 0.113 2.215 0.853 ...
+  ..- attr(*, "dimnames")=List of 3
+  .. ..$ : chr [1:2] "1" "2"
+  .. ..$ : chr [1:2] "1" "2"
+  .. ..$ : chr [1:10] "1" "2" "3" "4" ...
+ $ B0     : num [1:2, 1:2, 1:1000] 0.5772 -0.0907 -0.0907 0.5505 0.7633 ...
+ $ lr     : num [1:1000] -0.452 -0.361 -1.168 -0.176 -0.351 ...
 > 
