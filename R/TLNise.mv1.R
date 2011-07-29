@@ -459,9 +459,10 @@ standard.f <- function(Y, V, V0) {
         s <- svd(V0)
         n <- length(s$d)
         rtV0 <- s$u %*% diag(sqrt(s$d), n, n) %*% t(s$v)
-        Ys <- solve(rtV0, Y)
+        Ys <- solve(rtV0, Y)  ## rtV0^{-1} Y
         Vs <- array(dim = dim(V))
         for(i in seq_len(dim(Vs)[3])) {
+                ## rtV0^{-1} V rtV0^{-1}
                 Vs[, , i] <- solve(rtV0, t(solve(rtV0, V[, , i])))
         }
         list(Y = Ys, V = Vs, rtVo = rtV0)
