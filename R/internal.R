@@ -82,14 +82,12 @@ drawSample0 <- function(sg.out, n = 1000) {
         w <- sg.out$wt
         draw <- lapply(seq(n), function(i) {
                 use <- sample(1:N, 1, prob = w)
-                mvrnorm(1, gammastar[use, ], Dstar[[use]])
+		MASS::mvrnorm(1, gammastar[use, ], Dstar[[use]])
         })
         do.call("rbind", draw)
 }
 
 drawSample <- function(tlnise.out, n = 1000, Y, V, W = NULL) {
-        if(!require(MASS))
-                stop("'MASS' package required for 'drawSample'")
         sg.out <- sampleGamma(tlnise.out, V, Y, W)
         gammastar <- sg.out$gammastar
         Dstar <- sg.out$Dstar
@@ -97,7 +95,7 @@ drawSample <- function(tlnise.out, n = 1000, Y, V, W = NULL) {
         w <- sg.out$wt
         draw <- lapply(seq(n), function(i) {
                 use <- sample(1:N, 1, prob = w)
-                mvrnorm(1, gammastar[use, ], Dstar[[use]])
+                MASS::mvrnorm(1, gammastar[use, ], Dstar[[use]])
         })
         do.call("rbind", draw)
 }

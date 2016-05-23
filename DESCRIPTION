@@ -1,7 +1,6 @@
 Package:  tlnise
 Depends:  R (>= 3.0.0)
-Suggests:  MASS
-Imports:  stats
+Imports:  stats, MASS
 Version:  2.0
 Date:  2013-05-24
 Title:  Two-level normal independent sampling estimation

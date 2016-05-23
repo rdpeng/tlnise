@@ -1,5 +1,7 @@
 export("tlnise", "initTLNise")
 
-importFrom(stats, "rnorm")
+importFrom("stats", "rnorm", "pchisq", "qchisq", "runif", "weighted.mean")
+importFrom("MASS", "mvrnorm")
+
 
 useDynLib(tlnise)
