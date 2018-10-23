@@ -10,6 +10,6 @@ You can install the released version of tlnise from GitHub with:
 remotes::install_github("rdpeng/tlnise")
 ```
 
-Note that you need to have the `remotes` package installed first.
+Note that you need to have the `remotes` package installed first. You will also need a Fortran compiler installed to compile the Fortran code.
 
 
